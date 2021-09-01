@@ -1,0 +1,53 @@
+html, body {
+    overflow: hidden;
+}
+
+textarea {
+    width: 25rem;
+    height: 15rem;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 45% 10% 45%;
+    align-items: center;
+    justify-items: center;
+    padding: 0 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.s-i-d {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.simple-input {
+    width: 7rem;
+    height: 2rem;
+}
+
+.long-input {
+    width: 25rem;
+    height: 2rem;
+}
+
+.add-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.x-btn {
+    width: 2rem;
+    height: 2rem;
+}

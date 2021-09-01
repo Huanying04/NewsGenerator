@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>新聞產生器</title>
+
+        <link rel="stylesheet" href="styles/index.css">
+    </head>
+    <body>
+        <div class="main">
+            <div id="forms" class="form">
+                <h2>時間</h2>
+                <div class="s-i-d">
+                    <input id="yr" class="simple-input" placeholder="年">
+                    <input id="mn" class="simple-input" placeholder="月">
+                    <input id="day" class="simple-input" placeholder="日">
+                </div>
+                <div class="s-i-d">
+                    <input id="hr" class="simple-input" placeholder="時">
+                    <input id="min" class="simple-input" placeholder="分">
+                    <input id="sec" class="simple-input" placeholder="秒">
+                </div>
+                <h2>前言</h2>
+                <div>
+                    <textarea id="preface" placeholder="前言"></textarea>
+                </div>
+                <div>
+                    <textarea id="outline" placeholder="大綱"></textarea>
+                </div>
+                <h2>轉折</h2>
+                <div>
+                    <input id="forum_name" class="simple-input" placeholder="某論壇名稱"><br>
+                    <textarea id="sb_s" placeholder="網友說了什麼"></textarea>
+                </div>
+                <h2>圖片</h2>
+                <div>
+                    <input id="img_desc" class="long-input" placeholder="圖片說明">
+                </div>
+                <h2>引用正方網友說詞<button id="add_p" class="add-btn">+</button></h2>
+                <div id="p">
+                    <div id="p1d">
+                        <input id="p1" class="long-input"><button class="x-btn" onclick="del_p(1)">X</button>
+                    </div>
+                </div>
+                <h2>引用反方網友說詞<button id="add_n" class="add-btn">+</button></h2>
+                <div id="n">
+                    <div id="n1d">
+                        <input id="n1" class="long-input"><button class="x-btn" onclick="del_n(1)">X</button>
+                    </div>
+                </div>
+                <h2>編輯名字</h2>
+                <div>
+                    <input id="editing" class="simple-input" placeholder="編輯名">
+                </div>
+            </div>
+            <div>
+                <button id="generate">產生!</button>
+            </div>
+            <div id="result">
+                <b>範本：</b>
+                <br><br>
+                編輯中心/綜合報導
+                <br><br>
+                年-月-日 時:分:秒
+                <br><br>
+                （前言）。不過，近日就有網友討論，（大綱），貼文引發熱議。
+                <br><br>
+                原PO在（某論壇名稱）貼文指出「（網友說了什麼）」
+                <br><br>
+                （截圖）<br>
+                ▲（圖片說明）。
+                <br><br>
+                貼文一出，不少網友紛紛回應「」、「」、「」、「」、「」、「」、「」。
+                <br><br>
+                不過，也有不少人持反對立場「」、「」、「」、「」、「」、「」。（編輯：某某某）
+            </div>
+        </div>
+        
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
