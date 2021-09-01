@@ -25,7 +25,7 @@ document.getElementById("generate").onclick = function() {
 
 document.getElementById("add_p").onclick = function() {
     var div = document.createElement("div");
-    div.id = '"p'+p+'d"';
+    div.id = 'p'+p+'d';
     div.innerHTML = '<input id="p'+p+'" class="long-input"><button class="x-btn" onclick="del_p('+p+')">X</button>';
     document.getElementById("p").appendChild(div);
     p++;
@@ -33,7 +33,7 @@ document.getElementById("add_p").onclick = function() {
 
 document.getElementById("add_n").onclick = function() {
     var div = document.createElement("div");
-    div.id = '"n'+n+'d"';
+    div.id = 'n'+n+'d';
     div.innerHTML = '<input id="n'+n+'" class="long-input"><button class="x-btn" onclick="del_n('+n+')">X</button>';
     document.getElementById("n").appendChild(div);
     n++;
