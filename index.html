@@ -34,6 +34,9 @@
                 </div>
                 <h2>圖片</h2>
                 <div>
+                    <input id="img" type="file" accept="image/*">
+                </div>
+                <div>
                     <input id="img_desc" class="long-input" placeholder="圖片說明">
                 </div>
                 <h2>引用正方網友說詞<button id="add_p" class="add-btn">+</button></h2>
@@ -53,10 +56,11 @@
                     <input id="editing" class="simple-input" placeholder="編輯名">
                 </div>
             </div>
-            <div>
+            <div class="form">
                 <button id="generate">產生!</button>
+                <button id="bahamut">複製巴哈原始碼</button>
             </div>
-            <div id="result">
+            <div id="result" class="res">
                 <b>範本：</b>
                 <br><br>
                 編輯中心/綜合報導
@@ -76,7 +80,8 @@
             </div>
         </div>
         
-
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="js/uploader.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

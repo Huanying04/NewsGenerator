@@ -19,6 +19,8 @@
 var p = 2;
 var n = 2;
 
+var data = "";
+
 document.getElementById("generate").onclick = function() {
     generate();
 }
@@ -39,6 +41,62 @@ document.getElementById("add_n").onclick = function() {
     n++;
 }
 
+document.getElementById("bahamut").onclick = function() {
+    const date = new Date();
+    const year = document.getElementById("yr").value;
+    const month = document.getElementById("mn").value;
+    const day = document.getElementById("day").value;
+    const hour = document.getElementById("hr").value;
+    const minute = document.getElementById("min").value;
+    const second = document.getElementById("sec").value;
+    const pin = document.getElementById("p").getElementsByTagName("input");
+    const nin = document.getElementById("n").getElementsByTagName("input");
+    var str = "[div][div]編輯中心/綜合報導[/div][div]\r\n" + 
+    "[/div][div]"+(year != "" ? year : date.getFullYear()) + "-" + 
+    (month != "" ? month : date.getMonth()) + "-" + 
+    (day != "" ? day : date.getDay()) + " " +
+    (hour != "" ? hour : (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())) + ":" + 
+    (minute != "" ? minute : (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())) + ":" + 
+    (second != "" ? second : (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()))+"[/div][div]\r\n" +
+    "[/div][div]"+document.getElementById("preface").value+"不過，近日就有網友討論，"+document.getElementById("outline").value+"貼文引發熱議。[/div][div]\r\n" +
+    "[/div][div]原PO在X貼文指出「"+document.getElementById("sb_s").value+"」[/div][div]\r\n" + 
+    "[/div][div]\r\n" +
+    "[img="+currentImage+"][/div]" +
+    "[div]▲"+document.getElementById("img_desc").value+"[/div][div]\r\n";
+    str += "[/div][div]貼文一出，不少網友紛紛回應";
+
+    for (var i = 0; i < pin.length; i++) {
+        if (i > 0) {
+            str += "、";
+        }
+        str += "「" + pin[i].value + "」";
+        if (i == pin.length - 1) {
+            str += "。";
+        }
+    }
+
+    str += "[/div][div]\r\n";
+
+    str += "[/div][div]不過，也有不少人持反對立場";
+
+    for (var i = 0; i < nin.length; i++) {
+        if (i > 0) {
+            str += "、";
+        }
+        str += "「" + nin[i].value + "」";
+        if (i == nin.length - 1) {
+            str += "。";
+        }
+    }
+    str += "（編輯："+document.getElementById("editing").value+"）[/div]";
+
+    copyTextToClipboard(str);
+}
+
+document.getElementById("img").onchange = function() {
+    setImage();
+}
+
 function generate() {
     var str = "";
     const date = new Date();
@@ -50,16 +108,17 @@ function generate() {
     const second = document.getElementById("sec").value;
     const pin = document.getElementById("p").getElementsByTagName("input");
     const nin = document.getElementById("n").getElementsByTagName("input");
-    str = "編輯中心/綜合報導\r\n\r\n" +
+    upload(data);
+    str = "編輯中心/綜合報導<br><br>" +
         (year != "" ? year : date.getFullYear()) + "-" + 
         (month != "" ? month : date.getMonth()) + "-" + 
         (day != "" ? day : date.getDay()) + " " +
         (hour != "" ? hour : (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())) + ":" + 
         (minute != "" ? minute : (date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes())) + ":" + 
-        (second != "" ? second : (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds())) + "\r\n\r\n" + 
-        document.getElementById("preface").value + "不過，近日就有網友討論，" + document.getElementById("outline").value + "貼文引發熱議。\r\n\r\n" + 
-        "原PO在" + document.getElementById("forum_name").value + "貼文指出「" + document.getElementById("sb_s").value + "」\r\n\r\n" + 
-        "[放你的圖或者把這段刪掉]\r\n▲" + document.getElementById("img_desc").value + "\r\n\r\n" + 
+        (second != "" ? second : (date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds())) + "<br><br>" + 
+        document.getElementById("preface").value + "不過，近日就有網友討論，" + document.getElementById("outline").value + "貼文引發熱議。<br><br>" + 
+        "原PO在" + document.getElementById("forum_name").value + "貼文指出「" + document.getElementById("sb_s").value + "」<br><br>" + 
+        "<img src = \"" + data + "\" width=\"100%\"><br>▲" + document.getElementById("img_desc").value + "<br><br>" + 
         "貼文一出，不少網友紛紛回應";
     for (var i = 0; i < pin.length; i++) {
         if (i > 0) {
@@ -70,7 +129,7 @@ function generate() {
             str += "。";
         }
     }
-    str += "\r\n\r\n";
+    str += "<br><br>";
     str += "不過，也有不少人持反對立場";
     for (var i = 0; i < nin.length; i++) {
         if (i > 0) {
@@ -82,7 +141,7 @@ function generate() {
         }
     }
     str += "（編輯："+document.getElementById("editing").value+"）";
-    document.getElementById("result").innerText = str;
+    document.getElementById("result").innerHTML = str;
 }
 
 function del_p(id) {
@@ -92,3 +151,47 @@ function del_p(id) {
 function del_n(id) {
     document.getElementById("n"+id+"d").remove();
 }
+
+function setImage() {
+    var file = document.getElementById("img").files[0];
+    var rd = new FileReader();
+
+    rd.onloadend = function() {
+        data = rd.result;
+    }
+
+    if (file) {
+        rd.readAsDataURL(file);
+    }
+}
+
+function copyTextToClipboard(text) {
+    var textArea = document.createElement("textarea");
+  
+    textArea.style.position = 'fixed';
+    textArea.style.top = 0;
+    textArea.style.left = 0;
+
+    textArea.style.width = '2em';
+    textArea.style.height = '2em';
+  
+    textArea.style.padding = 0;
+  
+    textArea.style.border = 'none';
+    textArea.style.outline = 'none';
+    textArea.style.boxShadow = 'none';
+  
+    textArea.style.background = 'transparent';
+  
+  
+    textArea.value = text;
+  
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+  
+    document.execCommand('copy');
+  
+    document.body.removeChild(textArea);
+}
+  

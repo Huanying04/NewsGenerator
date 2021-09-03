@@ -9,7 +9,7 @@ textarea {
 
 .main {
     display: grid;
-    grid-template-columns: 45% 10% 45%;
+    grid-template-columns: 42.5% 15% 42.5%;
     align-items: center;
     justify-items: center;
     padding: 0 10px;
@@ -50,4 +50,12 @@ textarea {
 .x-btn {
     width: 2rem;
     height: 2rem;
+}
+
+.res {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 100%;
+    overflow-y: auto;
 }
