@@ -3,7 +3,7 @@ var currentImage = "";
 
 async function upload(data) {
     data = data.replace(/(data:image\/).*(;base64,)/, "");
-    $.ajax(
+    await $.ajax(
         {
             type: "POST",
             url: "https://api.imgur.com/3/image",
@@ -20,7 +20,7 @@ async function upload(data) {
             },
             success: async function(res) {
                 console.log(res.data.link);
-                currentImage = await res.data.link;
+                currentImage = res.data.link;
             },
             error: function(res) {
                 console.log(res);

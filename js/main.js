@@ -41,7 +41,12 @@ document.getElementById("add_n").onclick = function() {
     n++;
 }
 
-document.getElementById("bahamut").onclick = function() {
+document.getElementById("bahamut").onclick = async function() {
+    if (data != "") {
+        showToast("上傳圖片中，請稍後");
+        await upload(data);
+    }
+
     const date = new Date();
     const year = document.getElementById("yr").value;
     const month = document.getElementById("mn").value;
@@ -91,6 +96,8 @@ document.getElementById("bahamut").onclick = function() {
     str += "（編輯："+document.getElementById("editing").value+"）[/div]";
 
     copyTextToClipboard(str);
+
+    showToast("已複製", "#25b056");
 }
 
 document.getElementById("img").onchange = function() {
@@ -108,7 +115,7 @@ function generate() {
     const second = document.getElementById("sec").value;
     const pin = document.getElementById("p").getElementsByTagName("input");
     const nin = document.getElementById("n").getElementsByTagName("input");
-    upload(data);
+    // upload(data);
     str = "編輯中心/綜合報導<br><br>" +
         (year != "" ? year : date.getFullYear()) + "-" + 
         (month != "" ? month : date.getMonth()) + "-" + 
@@ -194,4 +201,19 @@ function copyTextToClipboard(text) {
   
     document.body.removeChild(textArea);
 }
-  
+
+function showToast(content, color) {
+    var toast = document.createElement("toast");
+    toast.id = "toast";
+    toast.innerHTML = content;
+    toast.className = "show";
+    var element = document.getElementById("toasts");
+    element.append(toast);
+    toast.style.backgroundColor = color==undefined?"#333":color;
+    setTimeout(
+        function(){
+            toast.className = toast.className.replace("show", "");
+            toast.remove();
+        },
+        3000);
+}
